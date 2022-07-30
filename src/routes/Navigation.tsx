@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import LazyPage1 from "../01-lazyload/pages/LazyPage1";
-import LazyPage2 from "../01-lazyload/pages/LazyPage2";
-import LazyPage3 from "../01-lazyload/pages/LazyPage3";
 import logo from "../logo.svg";
+import { routes } from "./routes";
 
 const Navigation = () => {
   return (
@@ -11,22 +10,19 @@ const Navigation = () => {
         <nav>
           <img src={logo} alt="React Logo" />
           <ul>
-            <li>
-              <NavLink to="/lazy1">Lazy1</NavLink>{" "}
-            </li>
-            <li>
-              <NavLink to="/lazy2">Lazy2</NavLink>{" "}
-            </li>
-            <li>
-              <NavLink to="/lazy3">Lazy3</NavLink>{" "}
-            </li>
+            {routes.map(({ path, name }) => (
+              <li key={path}>
+                <NavLink to={path}>{name}</NavLink>{" "}
+              </li>
+            ))}
           </ul>
         </nav>
 
         <Routes>
-          <Route path="/lazy1" element={<LazyPage1 />} />
-          <Route path="/lazy2" element={<LazyPage2 />} />
-          <Route path="/lazy3" element={<LazyPage3 />} />
+          {routes.map(({ path, Component }) => (
+            <Route key={path} path={path} element={<Component />} />
+          ))}
+          <Route path="/" element={<LazyPage1 />} />
         </Routes>
       </div>
     </BrowserRouter>
