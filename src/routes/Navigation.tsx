@@ -1,34 +1,32 @@
-import { Suspense } from "react";
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
-import LazyPage1 from "../01-lazyload/pages/LazyPage1";
 import logo from "../logo.svg";
-import { routes } from "./routes";
 
 const Navigation = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <BrowserRouter>
-        <div className="main-layout">
-          <nav>
-            <img src={logo} alt="React Logo" />
-            <ul>
-              {routes.map(({ path, name }) => (
-                <li key={path}>
-                  <NavLink to={path}>{name}</NavLink>{" "}
-                </li>
-              ))}
-            </ul>
-          </nav>
+    <BrowserRouter>
+      <div className="main-layout">
+        <nav>
+          <img src={logo} alt="React Logo" />
+          <ul>
+            <li>
+              <NavLink to="/">Home</NavLink>{" "}
+            </li>
+            <li>
+              <NavLink to="/about">About</NavLink>{" "}
+            </li>
+            <li>
+              <NavLink to="/users">Users</NavLink>{" "}
+            </li>
+          </ul>
+        </nav>
 
-          <Routes>
-            {routes.map(({ path, Component }) => (
-              <Route key={path} path={path} element={<Component />} />
-            ))}
-            <Route path="/" element={<LazyPage1 />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </Suspense>
+        <Routes>
+          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/about" element={<h1>About</h1>} />
+          <Route path="/users" element={<h1>Users</h1>} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
 
