@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import ShoppingPage from "../02-component-patterns/pages/ShoppingPage";
 import logo from "../logo.svg";
 
 const Navigation = () => {
@@ -9,7 +10,7 @@ const Navigation = () => {
           <img src={logo} alt="React Logo" />
           <ul>
             <li>
-              <NavLink to="/">Home</NavLink>{" "}
+              <NavLink to="/">Shopping</NavLink>{" "}
             </li>
             <li>
               <NavLink to="/about">About</NavLink>{" "}
@@ -21,7 +22,7 @@ const Navigation = () => {
         </nav>
 
         <Routes>
-          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/" element={<ShoppingPage />} />
           <Route path="/about" element={<h1>About</h1>} />
           <Route path="/users" element={<h1>Users</h1>} />
         </Routes>
